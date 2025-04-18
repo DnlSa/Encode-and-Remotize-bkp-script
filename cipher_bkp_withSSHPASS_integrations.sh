@@ -33,7 +33,7 @@ if  echo "$RESPONSE" | grep -q "$STATUS" ; then
     logmsg "Successfully compressed the ${BKP_PATH}/backup.dmp"
   else
     logerr "Failed to compressed the ${BKP_PATH}/backup.dmp"
-    sshpass -p "$remote_pwd" sftp  -q sftp_nokia@10.133.238.31 << EOF
+    sshpass -p "$remote_pwd" sftp  -q $remote_usr:$remote_pwd  << EOF
 put $BACKUP_PATH/error_log_${dat}.txt  $remotepath #send md5 source
 EOF
     exit 1
